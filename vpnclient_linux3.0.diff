@@ -1,0 +1,45 @@
+diff -ur vpnclient.org/driver_build.sh vpnclient/driver_build.sh
+--- vpnclient.org/driver_build.sh	2008-06-23 18:59:12.000000000 +0200
++++ vpnclient/driver_build.sh	2011-10-22 18:42:17.241655656 +0200
+@@ -46,7 +46,7 @@
+ fi
+ 
+ case `uname -r` in
+-2.[56].*)
++2.[56].*|3.*)
+     make "KERNEL_SOURCES=${KSRCDIR}"
+     ;;
+ *)
+diff -ur vpnclient.org/vpnclient_init vpnclient/vpnclient_init
+--- vpnclient.org/vpnclient_init	2008-06-23 18:59:12.000000000 +0200
++++ vpnclient/vpnclient_init	2011-10-22 14:50:18.993914598 +0200
+@@ -17,7 +17,7 @@
+ VPNDEV="cipsec0"
+ VPNMOD=cisco_ipsec
+ case `uname -r` in
+-2.[56].*)
++2.[56].*|3.*)
+     VPNMOD_FILE="${VPNMOD}.ko"
+     ;;
+ *)
+@@ -61,6 +61,8 @@
+ 		exit 1
+ 	fi
+ 	case "`uname -r`" in
++	3.*)
++		;;
+ 	2.6.*)
+ 		;;
+ 	2.5.*)
+diff -ur vpnclient.org/vpn_install vpnclient/vpn_install
+--- vpnclient.org/vpn_install	2008-06-23 18:59:12.000000000 +0200
++++ vpnclient/vpn_install	2011-10-22 14:48:56.773916091 +0200
+@@ -317,7 +317,7 @@
+ # Make module
+ #
+ case `uname -r` in
+-2.[56].*)
++2.[56].*|3.*)
+     MODULE_NAME=cisco_ipsec.ko
+     ;;
+ *)
